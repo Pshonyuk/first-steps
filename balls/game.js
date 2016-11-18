@@ -1,4 +1,4 @@
-/* ---Pshonjuk V. V. 2015--- */
+/* ---Pshonyuk V. V. 2015--- */
 /* ---code without comments--- */
 function reset_(){}
  
