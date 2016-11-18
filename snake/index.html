@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+	<head>
+	<meta charset="UTF-8">
+	<title>Snake</title>
+	<link href="favicon.ico" rel="shortcut icon" type="image/x-icon">
+	<style>
+		body{
+			background: url(bg.png) repeat;
+		}
+
+		#wrapField{
+			background: rgba(70,70,70,.4);
+			border-radius: 7px;
+			box-shadow: inset 10px 10px 10px rgb(55,55,55), inset -10px -10px 10px rgb(15,15,15);
+			height: 304px;
+			margin: 20px auto;
+			padding: 20px;
+			width: 305px;
+		}
+
+		#field{
+			background: #444;
+			border-bottom: 2px solid #777;
+			border-left: 2px solid #777;
+			border: 1px solid #777;
+			height: 300px;		 
+			width: 300px;
+		}
+
+		.container{
+			height: 30px;
+			margin: 0 auto;
+			width: 340px;
+		}
+
+		#startGame{
+			background: rgba(255,255,255,.3);
+			border-radius: 7px;
+			box-shadow: inset 6px 6px 6px rgb(120,120,120), inset -6px -6px 6px rgb(50,50,50);
+			color: #000;
+			cursor: pointer;
+			float: right;
+			font: bold italic 18pt serif;
+			padding:  5px;
+			text-align: center;
+			width: 150px;
+		}
+
+		#startGame:hover{
+			color: #1f1f1f;
+			-webkit-transition: color  .5s;
+     		-moz-transition: color  .5s;
+     		-o-transition: color  .5s;
+     		transition: color .5s;
+		}
+
+		#rGame{
+			color: #bbb;
+			float: left;
+			font: bold italic 18pt serif;
+			padding-top: 5px;
+		}
+
+		#bestResult{
+			color: #777;
+			float: left;
+			font: bold italic 18pt serif;
+			margin-top: -15px;
+		}
+
+		.cell{
+			background: #444;
+			border-right: 1px solid #777; 
+			border-top: 1px solid #777; 
+			box-sizing: border-box;
+			color:#fff;
+			float: left;
+			height: 10px;
+			width: 10px;
+		}
+
+		#footer{
+			color: rgba(0,0,0,.8);
+			font: bold italic 12pt serif;
+			margin: -30px auto;
+			position: absolute;
+			text-align: center;
+			top: 100%;
+			vertical-align: bottom;
+			width: 150px;
+		}
+	</style>
+	</head>	
+	<body>
+	<div class="container">
+		<div id="rGame">Рахунок: 0</div>
+		<div id="startGame">Розпочати</div>
+	</div>
+	<div id="wrapField">
+		<div id="field"></div>
+	</div>
+	<div class="container">
+		<div id="bestResult">Кращий результат: 0</div>
+	</div>
+	<div id="footer">Pshonjuk V. V.</div>
+	<script src="jquery-2.1.1.min.js"></script>
+	<script src="jquery.cookie.js"></script>
+	<script src="game.js"></script>
+	</body>
+</html>	

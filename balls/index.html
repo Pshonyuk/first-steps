@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html>
+	<head>
+	<meta charset="UTF-8">
+	<title>Balls</title>
+	<link href="favicon.ico" rel="shortcut icon" type="image/x-icon">
+	<style>
+		body{
+			background: url(bg.png) repeat;
+			margin: 0;
+			padding: 0;
+		}
+
+		#header{
+			height: 35px;
+			margin: 0 auto;
+			width:  200px;
+		}
+
+		#level{
+			background: rgba(255,255,255,.1);
+			border: 2px solid rgba(255,255,255,.7);
+			box-shadow: 4px 4px 4px rgba(0,0,0,.6);
+			color: rgba(255,255,255,.6);
+			cursor: pointer;
+			float: left;
+			font: bold italic 18pt serif;
+			padding: 5px 0 2px 0;
+			text-align: center;
+			transform: skewX(-10deg);
+			transition: all .4s;
+			width: 150px;
+		}
+
+		#help{
+			background: rgba(255,255,255,.1);
+			border-radius: 50%;
+			border: 2px solid rgba(255,255,255,.7);
+			box-shadow: 4px 4px 4px rgba(0,0,0,.6);
+			color: rgba(255,255,255,.6);
+			cursor: pointer;
+			float: right;
+			font: bold italic 18pt serif;
+			height: 25px;
+			line-height: 25px;
+			margin: 5px 0;
+			text-align: center;
+			width: 25px;
+		}
+
+		#help_text{
+			background: rgba(120,120,120,.8);
+			border-radius: 7px;
+			border: 2px solid rgba(255,255,255,.7);
+			color: #fff;
+			font: bold italic 16pt serif;
+			overflow: hidden;
+			padding: 0 10px;
+			position: absolute;
+			top: 43px;
+			transition: all .3s;
+			visibility: hidden;
+			width: 260px;
+			z-index: 100;
+		}
+
+		#wrapContainer{
+			background: rgba(70,70,70,.4);
+			border-radius: 7px;
+			box-shadow: inset 10px 10px 10px rgb(55,55,55), inset -10px -10px 10px rgb(15,15,15);
+			margin: 10px auto;
+			padding: 20px;
+			visibility: hidden;
+		}
+
+		#image_cnt{
+			display: block;
+			margin: 25px auto;
+		}
+
+		#container{
+			margin: 0 auto;
+			overflow: hidden;
+			background: rgb(255,197,120);
+			background: -moz-linear-gradient(top,  rgba(255,197,120,1) 0%, rgba(251,157,35,1) 100%);
+			background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(255,197,120,1)), color-stop(100%,rgba(251,157,35,1)));
+			background: -webkit-linear-gradient(top,  rgba(255,197,120,1) 0%,rgba(251,157,35,1) 100%);
+			background: -o-linear-gradient(top,  rgba(255,197,120,1) 0%,rgba(251,157,35,1) 100%);
+			background: -ms-linear-gradient(top,  rgba(255,197,120,1) 0%,rgba(251,157,35,1) 100%);
+			background: linear-gradient(to bottom,  rgba(255,197,120,1) 0%,rgba(251,157,35,1) 100%);
+			filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffc578', endColorstr='#fb9d23',GradientType=0 );
+		}
+
+		.cell{
+			border: solid 1px #1e1e1e;
+			box-sizing: border-box;
+			float: left;
+		}
+
+		#footer{
+			color: rgba(255,255,255,.4);
+			font: bold italic 12pt serif;
+			margin: -30px auto;
+			position: absolute;
+			text-align: center;
+			top: 100%;
+			vertical-align: bottom;
+			width: 150px;
+		}
+
+		#track_canvas{
+			position: absolute;
+		}
+
+		/*balls*/
+		@keyframes bubble-anim{
+			0% {
+			  transform: scale(1);
+			}
+			20% {
+			  transform: scaleY(0.95) scaleX(1.05);
+			}
+			48% {
+			  transform: scaleY(1.1) scaleX(0.9);
+			}
+			68% {
+			  transform: scaleY(0.98) scaleX(1.02);
+			}
+			80% {
+			  transform: scaleY(1.02) scaleX(0.98);
+			}
+			97%, 100% {
+			  transform: scale(1);
+			}
+		}
+
+		.stage {;
+			display: inline-block;
+			perspective-origin: 50% 50%;
+			perspective: 1200px;
+		}
+
+		.ball {
+			border-radius: 50%;
+			display: inline-block;
+			height: 100%;
+			margin: 0;
+			position: relative;
+			width: 100%;
+		}
+
+		.ball:hover{
+			animation: bubble-anim 2s ease-out infinite;
+		}
+
+		.ball:before {
+			content: "";
+			position: absolute;
+			top: 1%;
+			left: 5%;
+			width: 90%;
+			height: 90%;
+			border-radius: 50%;
+			background: -webkit-radial-gradient(50% 0px, circle, #ffffff, rgba(255, 255, 255, 0) 58%);
+			background: -moz-radial-gradient(50% 0px, circle, #ffffff, rgba(255, 255, 255, 0) 58%);
+			background: -o-radial-gradient(50% 0px, circle, #ffffff, rgba(255, 255, 255, 0) 58%);
+			background: radial-gradient(50% 0px, circle, #ffffff, rgba(255, 255, 255, 0) 58%);
+			-webkit-filter: blur(5px);
+			z-index: 2;
+		}
+
+		.bStyle1{
+			background: rgb(129,232,246);
+			background: -webkit-radial-gradient(50% 120%, circle cover, #81e8f6, #76deef 10%, #055194 80%, #062745 100%);
+			background: -moz-radial-gradient(50% 120%, circle cover, #81e8f6, #76deef 10%, #055194 80%, #062745 100%);
+			background: -o-radial-gradient(50% 120%, circle cover, #81e8f6, #76deef 10%, #055194 80%, #062745 100%);
+			background: radial-gradient(50% 120%, circle cover, #81e8f6, #76deef 10%, #055194 80%, #062745 100%);
+		}
+
+		.bStyle2{
+			background: rgb(255,48,25);
+			background: -moz-radial-gradient(center, ellipse cover,  rgba(255,48,25,1) 0%, rgba(207,4,4,1) 100%);
+			background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%,rgba(255,48,25,1)), color-stop(100%,rgba(207,4,4,1)));
+			background: -webkit-radial-gradient(center, ellipse cover,  rgba(255,48,25,1) 0%,rgba(207,4,4,1) 100%);
+			background: -o-radial-gradient(center, ellipse cover,  rgba(255,48,25,1) 0%,rgba(207,4,4,1) 100%);
+			background: radial-gradient(ellipse at center,  rgba(255,48,25,1) 0%,rgba(207,4,4,1) 100%);
+		}
+
+		.bStyle3{
+			background: rgb(143,196,0);
+			background: -moz-radial-gradient(center, ellipse cover,  rgba(143,196,0,1) 0%, rgba(143,196,0,1) 100%);
+			background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%,rgba(143,196,0,1)), color-stop(100%,rgba(143,196,0,1)));
+			background: -webkit-radial-gradient(center, ellipse cover,  rgba(143,196,0,1) 0%,rgba(143,196,0,1) 100%);
+			background: -o-radial-gradient(center, ellipse cover,  rgba(143,196,0,1) 0%,rgba(143,196,0,1) 100%);
+			background: radial-gradient(ellipse at center,  rgba(143,196,0,1) 0%,rgba(143,196,0,1) 100%);
+		}
+
+		.bStyle4{
+			background: rgb(242,130,91);
+			background: -moz-radial-gradient(center, ellipse cover,  rgba(242,130,91,1) 0%, rgba(229,91,43,1) 50%, rgba(240,113,70,1) 100%);
+			background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%,rgba(242,130,91,1)), color-stop(50%,rgba(229,91,43,1)), color-stop(100%,rgba(240,113,70,1)));
+			background: -webkit-radial-gradient(center, ellipse cover,  rgba(242,130,91,1) 0%,rgba(229,91,43,1) 50%,rgba(240,113,70,1) 100%);
+			background: -o-radial-gradient(center, ellipse cover,  rgba(242,130,91,1) 0%,rgba(229,91,43,1) 50%,rgba(240,113,70,1) 100%);
+			background: radial-gradient(ellipse at center,  rgba(242,130,91,1) 0%,rgba(229,91,43,1) 50%,rgba(240,113,70,1) 100%);
+		}
+
+		.bStyle5{
+			background: rgb(96,108,136);
+			background: -moz-radial-gradient(center, ellipse cover,  rgba(96,108,136,1) 0%, rgba(63,76,107,1) 100%);
+			background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%,rgba(96,108,136,1)), color-stop(100%,rgba(63,76,107,1)));
+			background: -webkit-radial-gradient(center, ellipse cover,  rgba(96,108,136,1) 0%,rgba(63,76,107,1) 100%);
+			background: -o-radial-gradient(center, ellipse cover,  rgba(96,108,136,1) 0%,rgba(63,76,107,1) 100%);
+			background: radial-gradient(ellipse at center,  rgba(96,108,136,1) 0%,rgba(63,76,107,1) 100%);
+		}
+
+		.bStyle6{
+			background: rgb(229,112,231);
+			background: -moz-radial-gradient(center, ellipse cover,  rgba(229,112,231,1) 0%, rgba(200,94,199,1) 47%, rgba(168,73,163,1) 100%);
+			background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%,rgba(229,112,231,1)), color-stop(47%,rgba(200,94,199,1)), color-stop(100%,rgba(168,73,163,1)));
+			background: -webkit-radial-gradient(center, ellipse cover,  rgba(229,112,231,1) 0%,rgba(200,94,199,1) 47%,rgba(168,73,163,1) 100%);
+			background: -o-radial-gradient(center, ellipse cover,  rgba(229,112,231,1) 0%,rgba(200,94,199,1) 47%,rgba(168,73,163,1) 100%);
+			background: radial-gradient(ellipse at center,  rgba(229,112,231,1) 0%,rgba(200,94,199,1) 47%,rgba(168,73,163,1) 100%);
+		}
+
+		.bStyle7{
+			background: rgb(164,179,87);
+			background: -moz-radial-gradient(center, ellipse cover,  rgba(164,179,87,1) 0%, rgba(117,137,12,1) 100%);
+			background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%,rgba(164,179,87,1)), color-stop(100%,rgba(117,137,12,1)));
+			background: -webkit-radial-gradient(center, ellipse cover,  rgba(164,179,87,1) 0%,rgba(117,137,12,1) 100%);
+			background: -o-radial-gradient(center, ellipse cover,  rgba(164,179,87,1) 0%,rgba(117,137,12,1) 100%);
+			background: radial-gradient(ellipse at center,  rgba(164,179,87,1) 0%,rgba(117,137,12,1) 100%);
+		}
+
+		.bStyle8{
+			background: rgb(255,0,132);
+			background: -moz-radial-gradient(center, ellipse cover,  rgba(255,0,132,1) 0%, rgba(255,0,132,1) 100%);
+			background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%,rgba(255,0,132,1)), color-stop(100%,rgba(255,0,132,1)));
+			background: -webkit-radial-gradient(center, ellipse cover,  rgba(255,0,132,1) 0%,rgba(255,0,132,1) 100%);
+			background: -o-radial-gradient(center, ellipse cover,  rgba(255,0,132,1) 0%,rgba(255,0,132,1) 100%);
+			background: radial-gradient(ellipse at center,  rgba(255,0,132,1) 0%,rgba(255,0,132,1) 100%);
+		}
+	</style>
+	</head>	
+	<body onmousedown="mouseDown(this)" onmouseup="mouseUp(this)">
+		<div id="header">
+			<div id="level">Рівень 1</div>
+			<div id="help">?</div>
+		</div>
+		<div id="help_text">
+			<p>Увага!!! При рішенні головоломки мають бути задіяні всі клітинки...
+			<p>PS: Удачі))
+		</div>
+		<canvas id='track_canvas'></canvas>
+		<div id="image_cnt"></div>
+		<div id="wrapContainer">
+			<div id="container"></div>
+		</div>
+		<div id="footer">Pshonjuk V. V.</div>
+		<script src="jquery-2.1.1.min.js"></script>
+		<script src="prefixfree.js"></script>
+		<script src="jquery.cookie.js"></script>
+		<script type="text/javascript" src="jquery.disable.text.select.js"></script>
+		<script src="levels.js"></script>
+		<script src="game.js"></script>
+	</body>
+</html>	

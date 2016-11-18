@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+	<head>
+	<meta charset="UTF-8">
+	<title>Puzzles</title>
+	<link href="favicon.ico" rel="shortcut icon" type="image/x-icon">
+	<style>
+		body{
+			background: url(bg.png) repeat;
+			margin: 0;
+			padding: 0;
+		}
+
+		#header{
+			height: 35px;
+			margin: 0 auto;
+			width:  200px;
+		}
+
+		#level{
+			background: rgba(255,255,255,.1);
+			border: 2px solid rgba(255,255,255,.7);
+			box-shadow: 4px 4px 4px rgba(0,0,0,.6);
+			color: rgba(255,255,255,.6);
+			cursor: pointer;
+			float: left;
+			font: bold italic 18pt serif;
+			padding: 5px 0 2px 0;
+			text-align: center;
+			transform: skewX(-10deg);
+			transition: all .4s;
+			width: 150px;
+		}
+
+		#help{
+			background: rgba(255,255,255,.1);
+			border-radius: 50%;
+			border: 2px solid rgba(255,255,255,.7);
+			box-shadow: 4px 4px 4px rgba(0,0,0,.6);
+			color: rgba(255,255,255,.6);
+			cursor: pointer;
+			float: right;
+			font: bold italic 18pt serif;
+			height: 25px;
+			line-height: 25px;
+			margin: 5px 0;
+			text-align: center;
+			width: 25px;
+		}
+
+		#help_text{
+			background: rgba(120,120,120,.8);
+			border: 2px solid rgba(255,255,255,.7);
+			border-radius: 7px;
+			color: #fff;
+			font: bold italic 16pt serif;
+			overflow: hidden;
+			padding: 0 10px;
+			position: absolute;
+			top: 43px;
+			transition: all .3s;
+			visibility: hidden;
+			width: 260px;
+		}
+
+		#container{
+			border-radius: 15px;
+			border: 10px solid rgba(145,226,46,.5);
+			box-shadow: 7px 7px 9px rgba(0,0,0,.4);
+			height: 334px;
+			margin: 15px auto;
+			width: 1010px;
+		}
+
+		#image_cnt{
+			display: block;
+			margin: 25px auto;
+		}
+
+		#left_img{
+			background: #000;
+			border-right: 5px solid rgba(145,226,46,.5);
+			float: left;
+			height: 334px;
+			width: 500px;
+		}
+
+		#right_img{
+			border-left: 5px solid rgba(145,226,46,.5);
+			float: right;
+			height: 334px;
+			width: 500px;
+		}
+
+		.cell{
+			border-bottom: 1px solid rgb(146,226,46);
+			border-right: 1px solid rgb(146,226,46);
+			box-sizing: border-box;
+			cursor: pointer;
+			float: left;
+		}
+
+		.cell:hover{
+			opacity: .7;
+			transition: opacity .3s;
+		}
+
+		#footer{
+			color: rgba(255,255,255,.4);
+			font: bold italic 12pt serif;
+			margin: -30px auto;
+			position: absolute;
+			text-align: center;
+			top: 100%;
+			vertical-align: bottom;
+			width: 150px;
+		}
+	</style>
+	</head>	
+	<body>
+		<div id="header">
+			<div id="level">Рівень 1</div>
+			<div id="help">?</div>
+		</div>
+		<div id="help_text">
+			<p>Щоб скласти пазл, користуйтесь мишкою...
+			<p>Пазл має бути розміщений зверху!!!
+			<p>PS: Удачі))
+		</div>
+		<div id="image_cnt"></div>
+		<div id="container"> 
+			<div id="left_img"></div>
+			<div id="right_img"></div>
+		</div>
+		<div id="footer">Pshonjuk V. V.</div>
+		<script src="jquery-2.1.1.min.js"></script>
+		<script src="jquery.cookie.js"></script>
+		<script src="prefixfree.js"></script>
+		<script src="game.js"></script>
+	</body>
+</html>	

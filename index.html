@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>MiniGames</title>
+		<link href="favicon.ico" rel="shortcut icon" type="image/x-icon">
+		<style>
+			body{
+				background: #111 url(./bg.png) repeat;
+				margin: 0;
+				padding: 0;
+			}
+
+			#logo{
+				background: rgba(68,68,68,.4) url(./logo.png) center no-repeat;
+				border-bottom-left-radius: 40px;
+				border-bottom-right-radius: 40px;
+				box-shadow: 7px 7px 9px rgba(0,0,0,.6), inset 7px 7px 7px rgba(255,255,255,.08);
+				height: 100px;
+				width: 500px;
+			}
+
+			.a-logo{
+				display: block;
+				height: 100px;
+				margin: 0 auto;
+				width: 500px;
+			}
+
+			#wrapButton{
+				background: rgba(68,68,68,.5);
+				border-radius: 0 0 9px 9px;
+				border-top-right-radius: 35px;
+				box-shadow: 7px 7px 9px rgba(0,0,0,.6), inset 7px 7px 7px rgba(255,255,255,.08);
+				margin: 6px auto;
+				transform: rotate(2deg);
+				width: 300px;
+			}
+
+			#decorButton{
+				background: url(./icon1.png) no-repeat;
+				height: 24px;
+				left: 9px;
+				margin-bottom: -24px;
+				position: relative;
+				top: -9px;
+				width: 25px;
+			}
+
+			#button{
+				margin: 0;
+				padding: 2px 0 5px 0;
+			}
+
+			#button a{
+				background: rgba(142,142,142,.6);
+				border-radius: 7px;
+				box-shadow: inset 5px 5px 5px rgba(255,255,255,.2), inset -5px -5px 5px rgba(0,0,0,.2);
+				color: rgba(10,10,10,.8);
+				cursor: pointer;
+				display: block;
+				font: bold italic 18pt serif;
+				height: 45px;
+				line-height: 45px;
+				list-style: none;
+				margin: 25px auto;
+				text-align: center;
+				text-decoration: none;
+				transition: color .4s;
+				transition: transform .3s;
+				width: 240px;
+			}
+
+			#button a:hover{
+				color: #bbb;
+				transform: rotate(-2deg);
+			}
+
+			#footer{
+				color: #bbb;
+				font: bold italic 14pt serif;
+				margin: -30px;
+				position: absolute;
+				text-align: center;
+				top: 100%;
+				width: 250px;
+			}
+
+			.sitescopy{
+				visibility: hidden;
+			}
+		</style>
+	</head>
+	<body>
+		<a class="a-logo" href="./index.html"><div id="logo"></div></a>
+		<div id="wrapButton">
+			<div id="decorButton"></div>
+			<ul id="button">
+				<a href="snake/index.html"><li>Snake</li></a>
+				<a href="supercar/index.html"><li>SuperCar</li></a>
+				<a href="puzzles/index.html"><li>Puzzles</li></a>
+				<a href="rapid_ball/index.html"><li>Rapid ball</li></a>
+				<a href="balls/index.html"><li>Balls</li></a>
+			</ul>
+		</div>
+		<div id="footer">Pshonjuk V. V. © 2015</div>
+		<script src="jquery-2.1.1.min.js"></script>
+		<script src="prefixfree.js"></script>
+		<script>$('#footer').css('left',Math.floor($(document).width()/2)-125+'px');</script>
+	</body>
+</html>

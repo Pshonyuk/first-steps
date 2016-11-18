@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html>
+	<head>
+	<meta charset="UTF-8">
+	<title>SuperCar))</title>
+	<link href="favicon.ico" rel="shortcut icon" type="image/x-icon">
+	<style>
+		body{
+			background: url(bg.png) repeat;
+		}
+
+		.clearfix{
+			height: 10px;
+			visibility: hidden;
+		}
+
+		.container{
+			background: url(bg.png) repeat;  
+			height: 35px;
+			margin: 0 auto; 
+			width: 311px;
+		}
+
+		#alert{
+			color: #bbb;
+			cursor: left;
+			font: bold italic 18pt serif;
+			height:  19pt;
+			text-align: pointer;
+			width: 150px;
+ 			padding: 0;
+ 		}
+
+		#startGame{
+			background: rgba(49,54,69,.8);
+			border-radius: 7px;
+			box-shadow: inset 5px 5px 8px rgba(0,0,0,.5), inset -4px -4px 4px rgba(255,255,255,.3);
+			color: #6AC62E;
+			cursor: pointer;
+			float: right;
+			font: bold italic 18pt serif;
+			padding: 3px 0;
+			text-align: center;
+			width: 150px;
+ 		}
+
+ 		#startGame:hover{
+ 			color: #5BC19D;
+ 			-webkit-transition: color  .5s;
+     		-moz-transition: color  .5s;
+     		-o-transition: color  .5s;
+     		transition: color .5s;
+ 		}
+
+		#field{
+			background: #313645;
+			border-radius: 8px;
+			box-shadow: 7px 7px 8px rgba(0,0,0,.6);
+			height: 424px;
+			margin: 4px auto;
+			overflow: hidden;
+			padding: 10px 0px 0 10px;
+			width: 291px;
+		}
+
+		#hyper_way{
+			background: #A2ADA9; 
+			float: left;
+			height: 414px;
+			width: 187px;
+		}
+
+		#way{
+			float: left;
+			height: 414px;
+			margin: 0;
+			overflow: hidden;
+			position: absolute;
+			width: 150px;
+			z-index: 999;
+		}
+
+		#way_left{
+			background: url(line.png) repeat-y;
+			float: left;
+			height: 414px;
+			margin: 0;
+			width: 18px;
+		}
+
+		#way_right{
+			background: url(line.png) repeat-y; 
+			float: right;
+			height: 414px;
+			margin: 0;
+			width: 18px;
+		}
+
+		#life{
+			float: right;
+			height: 29px;
+			width: 96px;
+		}
+
+		#l1, #l2, #l3{
+			background: #eee;
+			border-radius: 50%;
+			box-shadow: inset 8px 8px 10px rgb(150,150,150);
+			display: inline-block;
+			height: 20px;
+			padding: 3px;
+			width: 20px;
+		}
+
+		#level,#source, #record{
+			background: rgba(0,0,0,.2);
+			border-radius: 7px;
+			box-shadow: inset 3px 3px 3px rgba(0,0,0,.7), inset -3px -3px 3px rgba(0,0,0,.4);
+			color: #5BC19D;
+			float: right;
+			font: bold italic 18pt serif;
+			margin-right: 20px;
+			margin-top: 15px;
+			padding: 3px 2px;
+			text-align: center;
+			width: 65px;
+		}
+
+		#source{
+			color: #6AC62E;
+		}
+
+		#footer{
+			color: rgba(255,255,255,.4);
+			font: bold italic 12pt serif;
+			margin-top: 10px;
+			text-align: center;
+		}
+
+		#record{
+			margin-top: 5px;
+		}
+
+		#recordText{
+			color: #bbb;
+			cursor: pointer;
+			float: right;
+			font: bold italic 18pt serif;
+			margin-right: 50px;
+			margin-top: 30px ;
+			text-align: center;
+			width: 47px;
+		}
+
+		.playerSkin{
+			height: 87px;
+			margin: 0 6px;
+			position: absolute;
+			width: 66px;
+			z-index: 0;
+		}
+
+	</style>
+	</head>	
+	<body>
+		<div class="container">
+			<div id="startGame">Розпочати</div>
+			<div id="alert"></div>
+			<div class="clearfix">.</div>
+		</div>
+		<div id="field">
+			<div id="hyper_way">
+				<div id="way_left"> </div>
+				<div id="way">
+					<div class="playerSkin" id="player"> </div>
+					<div class="playerSkin" id="car1"> </div>
+					<div class="playerSkin" id="car2"> </div>
+					<div class="playerSkin" id="car3"> </div>
+				</div>
+				<div id="way_right"> </div>
+			</div>
+			<div id="inf">
+				<div id="life">
+					<div id="l1" class="circleLife"> </div>
+					<div id="l2" class="circleLife"> </div>
+					<div id="l3" class="circleLife"> </div>
+				</div>
+				<div id="source">0</div>
+				<div id="level">1</div>
+				<div id="recordText">Рекорд:</div>
+				<div id="record">0</div>
+			</div>
+		</div>
+		<div class="container" id="footer"> Pshonjuk V. V.</div>
+		<script src="jquery-2.1.1.min.js"></script>
+		<script src="jquery.cookie.js"></script>
+		<script src="game.js"></script>
+	</body>
+</html>	
